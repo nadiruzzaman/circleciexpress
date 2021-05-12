@@ -8,6 +8,15 @@ jobs:
       - run: npm install 
       - run: npm start & 
       - run: npm test 
-      - deploy:
-          name: digital-ocean
-          command: ssh -o "StrictHostKeyChecking no" root@167.71.166.254"cd ~/circleciexpress; git pull; npm install; npm start &"
+    store_test_results:
+      path: test-results
+    persist_to_workspace:
+      root: /tmp/dir
+    paths:
+      - foo/bar
+      - baz
+     workflows:
+      version: 2
+      workflow:
+        jobs:
+         - build
